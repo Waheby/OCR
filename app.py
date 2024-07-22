@@ -49,8 +49,8 @@ def detect_certificate_text():
                 break
             else:
                 continue
-        jsonify({'Certificate Words Found': result})
 
+        return jsonify({'Certificate Words Found': result})
     except Exception as e:
         return jsonify({'error': str(e)})
 
