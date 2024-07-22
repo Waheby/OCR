@@ -6,6 +6,11 @@ from waitress import serve
 import matplotlib.pyplot as plt
 import keras_ocr
 
+from keras import backend as K
+
+import os
+os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
+
 # Create a Flask application instance
 app = Flask(__name__)
 # Enable CORS for all routes, allowing requests from any origin
@@ -49,5 +54,7 @@ def detect_certificate_text():
     except Exception as e:
         return jsonify({'error': str(e)})
 
-# if __name__ == '__main__':
-#     serve(app, host="0.0.0.0", port=5000)
+if __name__ == '__main__':
+    serve(app, host="0.0.0.0", port=5000)
+
+K.clear_session()
