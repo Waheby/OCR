@@ -6,7 +6,7 @@ from waitress import serve
 import matplotlib.pyplot as plt
 import keras_ocr
 
-from keras import backend as K
+from keras import backend as K  #to prevent memory leaks
 
 import os
 os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
@@ -57,4 +57,4 @@ def detect_certificate_text():
 if __name__ == '__main__':
     serve(app, host="0.0.0.0", port=5000)
 
-K.clear_session()
+K.clear_session() #to prevent memory leaks
