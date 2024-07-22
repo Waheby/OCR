@@ -22,13 +22,13 @@ def detect_certificate_text():
     try:
         # Receive Data from Frontend API Request
         data = request.get_json()
-
+        print(data['data'])
         result = False
 
         pipeline = keras_ocr.pipeline.Pipeline()
 
         images = [
-            data,
+            data['data'],
         ]
 
         words_found = [""]
@@ -50,7 +50,7 @@ def detect_certificate_text():
             else:
                 continue
 
-        return jsonify({'Certificate Words Found': result})
+        return jsonify({'ocrPrediction': result})
     except Exception as e:
         return jsonify({'error': str(e)})
 
