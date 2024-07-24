@@ -16,6 +16,8 @@ app = Flask(__name__)
 # Enable CORS for all routes, allowing requests from any origin
 CORS(app,resources={r"/*":{"origins":"*"}})
 
+pipeline = keras_ocr.pipeline.Pipeline()
+
 # Define a route for HTTP request
 @app.route('/validate', methods=['POST'])
 def detect_certificate_text():
@@ -24,8 +26,6 @@ def detect_certificate_text():
         data = request.get_json()
         print(data['data'])
         result = False
-
-        pipeline = keras_ocr.pipeline.Pipeline()
 
         images = [
             data['data'],
