@@ -18,6 +18,10 @@ CORS(app,resources={r"/*":{"origins":"*"}})
 
 pipeline = keras_ocr.pipeline.Pipeline()
 
+@app.route("/")
+def homepage():
+    return ("<h1>OCR EXPERIENCE EXCHANGE</h1>")
+
 # Define a route for HTTP request
 @app.route('/validate', methods=['POST'])
 def detect_certificate_text():
